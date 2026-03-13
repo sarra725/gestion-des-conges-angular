@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.btnSpaceIcon{
+    margin-right: 10px;
+  }
+  .btnStyle {
+    margin-right: 10px;
+}
+
+ngb-modal-backdrop.modal-backdrop {
+  z-index: 1000!important;
+}

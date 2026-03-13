@@ -1,0 +1,63 @@
+<div class="col-12 col-sm-12 col-lg-12">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header" [ngStyle]="{'text-align': 'left'}">
+                  
+                    <!-- <button type="button" class="btn btn-outline-primary btn-lg btnStyle"
+                        [routerLink]="['add']">Ajouter un Congé</button> -->
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Identifiant</th>
+                                <th scope="col">Date de début</th>
+                                <th scope="col">Date de fin</th>
+                                <th scope="col">Cause</th>
+                                <th scope="col">Reponse</th>
+                                <th scope="col">Employer ID</th>
+                                <th scope="col">Employer</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="conges">
+                            <tr *ngFor="let conge of listConge ">  
+                                <td>{{conge.id}}</td>
+                                <td>{{conge.date_debut}}</td>
+                                <td>{{conge.date_fin}}</td>                           
+                                <td>{{conge.cause}}</td>
+                                <td>
+                                    <span class="badge bg-success btnSpaceIcon" *ngIf="conge.response =='accepted'">Accepté</span>
+                                    <span class="badge bg-warning btnSpaceIcon" *ngIf="conge.response =='wait'" >En Cours</span>
+                                    <span class="badge bg-danger btnSpaceIcon" *ngIf="conge.response =='refused'"  >Refusé</span>
+                                </td>
+                                <td>{{conge.employee.employeeid}}</td>
+                                <td>{{conge.employee.employeename}}</td>
+                                
+                                    <td >
+                                        <button class="btn btn-success btnSpaceIcon" (click)="changeResponse(conge.id,'accepted')" ><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-warning btnSpaceIcon" (click)="changeResponse(conge.id,'wait')"><i class="fa fa-pause"></i></button>
+                                        <button class="btn btn-danger" (click)="changeResponse(conge.id,'refused')"><i class="fa fa-ban" ></i></button>
+                                    </td>
+                             
+                            </tr>
+                        </tbody>
+                    </table>
+  
+                    <div class="d-flex justify-content-between p-2">
+                        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+                        </ngb-pagination>
+                        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                            <option [ngValue]="6"> 6 items per page</option>
+                            <option [ngValue]="12">12 items per page</option>
+                            <option [ngValue]="24">24 items per page</option>
+                            <option [ngValue]="48">48 items per page</option>
+                        </select>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
